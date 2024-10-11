@@ -1,0 +1,36 @@
+name: Check formatting, linting, and run tests
+
+on:
+  push:
+    branches:
+      [main, develop]
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  prettier-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Prettier check
+        run: |
+            echo "Running Prettier to check for formatting issues..."
+            npm run prettier:check
+
+      - name: Display files that need formatting
+        if: failure() # Only run this if Prettier check fails
+        run: |
+          echo "The following files need to be formatted:"
+          npx prettier --check "test/**/*.{ts,tsx,js,jsx,json,css,md}" --list-different    
