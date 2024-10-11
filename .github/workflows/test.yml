@@ -27,10 +27,4 @@ jobs:
       - name: Run Prettier check
         run: |
             echo "Running Prettier to check for formatting issues..."
-            npm run prettier:check
-
-      - name: Display files that need formatting
-        if: failure() # Only run this if Prettier check fails
-        run: |
-          echo "The following files need to be formatted:"
-          npx prettier --check "test/**/*.{ts,tsx,js,jsx,json,css,md}" --list-different    
+            npm run prettier:check   
