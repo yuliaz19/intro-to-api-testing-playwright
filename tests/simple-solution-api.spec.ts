@@ -93,7 +93,7 @@ test('PUT order with valid ID = 1 + valid 16-digit API key | 200 OK', async ({ r
     id: 1,
   }
   const requestHeaders = {
-    'api_key': '1234567891234567',
+    api_key: '1234567891234567',
   }
   // Send a POST request to the server
   const response = await request.put('https://backend.tallinn-learning.ee/test-orders/1', {
@@ -117,7 +117,7 @@ test('PUT order with valid ID = 10 + valid 16-digit API key | 200 OK', async ({ 
     id: 10,
   }
   const requestHeaders = {
-    'api_key': '1234567891234567',
+    api_key: '1234567891234567',
   }
   // Send a PUT request to the server
   const response = await request.put('https://backend.tallinn-learning.ee/test-orders/10', {
@@ -141,7 +141,7 @@ test('PUT order with valid ID = 5 + valid 16-digit API key | 200 OK', async ({ r
     id: 5,
   }
   const requestHeaders = {
-    'api_key': '1234567891234567',
+    api_key: '1234567891234567',
   }
   // Send a PUT request to the server
   const response = await request.put('https://backend.tallinn-learning.ee/test-orders/5', {
@@ -154,7 +154,9 @@ test('PUT order with valid ID = 5 + valid 16-digit API key | 200 OK', async ({ r
   expect(response.status()).toBe(StatusCodes.OK)
 })
 
-test('PUT order with valid ID + invalid API key < 16 digits | 401 Unauthorized', async ({ request }) => {
+test('PUT order with valid ID + invalid API key < 16 digits | 401 Unauthorized', async ({
+  request,
+}) => {
   // prepare request body
   const requestBody = {
     status: 'OPEN',
@@ -165,7 +167,7 @@ test('PUT order with valid ID + invalid API key < 16 digits | 401 Unauthorized',
     id: 1,
   }
   const requestHeaders = {
-    'api_key': '123456789123456',
+    api_key: '123456789123456',
   }
   // Send a PUT request to the server
   const response = await request.put('https://backend.tallinn-learning.ee/test-orders/1', {
@@ -178,7 +180,9 @@ test('PUT order with valid ID + invalid API key < 16 digits | 401 Unauthorized',
   expect(response.status()).toBe(StatusCodes.UNAUTHORIZED)
 })
 
-test('PUT order with valid ID + invalid API key > 16 digits | 401 Unauthorized', async ({ request }) => {
+test('PUT order with valid ID + invalid API key > 16 digits | 401 Unauthorized', async ({
+  request,
+}) => {
   // prepare request body
   const requestBody = {
     status: 'OPEN',
@@ -189,7 +193,7 @@ test('PUT order with valid ID + invalid API key > 16 digits | 401 Unauthorized',
     id: 1,
   }
   const requestHeaders = {
-    'api_key': '12345678912345678',
+    api_key: '12345678912345678',
   }
   // Send a PUT request to the server
   const response = await request.put('https://backend.tallinn-learning.ee/test-orders/1', {
@@ -202,7 +206,9 @@ test('PUT order with valid ID + invalid API key > 16 digits | 401 Unauthorized',
   expect(response.status()).toBe(StatusCodes.UNAUTHORIZED)
 })
 
-test('PUT order with valid ID + invalid API key with letters | 401 Unauthorized', async ({ request }) => {
+test('PUT order with valid ID + invalid API key with letters | 401 Unauthorized', async ({
+  request,
+}) => {
   // prepare request body
   const requestBody = {
     status: 'OPEN',
@@ -213,7 +219,7 @@ test('PUT order with valid ID + invalid API key with letters | 401 Unauthorized'
     id: 1,
   }
   const requestHeaders = {
-    'api_key': 'abcabcabcabcabca',
+    api_key: 'abcabcabcabcabca',
   }
   // Send a PUT request to the server
   const response = await request.put('https://backend.tallinn-learning.ee/test-orders/1', {
@@ -237,7 +243,7 @@ test(' PUT order with valid ID + empty API key | 401 Unauthorized', async ({ req
     id: 1,
   }
   const requestHeaders = {
-    'api_key': '',
+    api_key: '',
   }
   // Send a PUT request to the server
   const response = await request.put('https://backend.tallinn-learning.ee/test-orders/1', {
@@ -250,7 +256,9 @@ test(' PUT order with valid ID + empty API key | 401 Unauthorized', async ({ req
   expect(response.status()).toBe(StatusCodes.UNAUTHORIZED)
 })
 
-test(' PUT order with non-existing ID = 0 + valid 16-digit API key | 400 Bad request', async ({ request }) => {
+test(' PUT order with non-existing ID = 0 + valid 16-digit API key | 400 Bad request', async ({
+  request,
+}) => {
   // prepare request body
   const requestBody = {
     status: 'OPEN',
@@ -261,7 +269,7 @@ test(' PUT order with non-existing ID = 0 + valid 16-digit API key | 400 Bad req
     id: 0,
   }
   const requestHeaders = {
-    'api_key': '1234567891234567',
+    api_key: '1234567891234567',
   }
   // Send a PUT request to the server
   const response = await request.put('https://backend.tallinn-learning.ee/test-orders/0', {
@@ -274,7 +282,9 @@ test(' PUT order with non-existing ID = 0 + valid 16-digit API key | 400 Bad req
   expect(response.status()).toBe(StatusCodes.BAD_REQUEST)
 })
 
-test(' PUT order with non-existing ID > 10 + valid 16-digit API key | 400 Bad request', async ({ request }) => {
+test(' PUT order with non-existing ID > 10 + valid 16-digit API key | 400 Bad request', async ({
+  request,
+}) => {
   // prepare request body
   const requestBody = {
     status: 'OPEN',
@@ -285,7 +295,7 @@ test(' PUT order with non-existing ID > 10 + valid 16-digit API key | 400 Bad re
     id: 11,
   }
   const requestHeaders = {
-    'api_key': '1234567891234567',
+    api_key: '1234567891234567',
   }
   // Send a PUT request to the server
   const response = await request.put('https://backend.tallinn-learning.ee/test-orders/11', {
@@ -298,7 +308,9 @@ test(' PUT order with non-existing ID > 10 + valid 16-digit API key | 400 Bad re
   expect(response.status()).toBe(StatusCodes.BAD_REQUEST)
 })
 
-test(' PUT order with empty ID  + valid 16-digit API key | 400 Bad request', async ({ request }) => {
+test(' PUT order with empty ID  + valid 16-digit API key | 400 Bad request', async ({
+  request,
+}) => {
   // prepare request body
   const requestBody = {
     status: 'OPEN',
@@ -309,7 +321,7 @@ test(' PUT order with empty ID  + valid 16-digit API key | 400 Bad request', asy
     id: '',
   }
   const requestHeaders = {
-    'api_key': '1234567891234567',
+    api_key: '1234567891234567',
   }
   // Send a PUT request to the server
   const response = await request.put('https://backend.tallinn-learning.ee/test-orders/11', {
@@ -322,7 +334,9 @@ test(' PUT order with empty ID  + valid 16-digit API key | 400 Bad request', asy
   expect(response.status()).toBe(StatusCodes.BAD_REQUEST)
 })
 
-test('DELETE order with valid ID = 1 + valid 16-digit API key | 204 No content', async ({ request }) => {
+test('DELETE order with valid ID = 1 + valid 16-digit API key | 204 No content', async ({
+  request,
+}) => {
   // prepare request body
   const requestBody = {
     status: 'OPEN',
@@ -333,7 +347,7 @@ test('DELETE order with valid ID = 1 + valid 16-digit API key | 204 No content',
     id: 1,
   }
   const requestHeaders = {
-    'api_key': '1234567891234567',
+    api_key: '1234567891234567',
   }
   // Send a DELETE request to the server
   const response = await request.delete('https://backend.tallinn-learning.ee/test-orders/1', {
@@ -346,7 +360,9 @@ test('DELETE order with valid ID = 1 + valid 16-digit API key | 204 No content',
   expect(response.status()).toBe(StatusCodes.NO_CONTENT)
 })
 
-test('DELETE order with valid ID = 10 + valid 16-digit API key | 204 No content', async ({ request }) => {
+test('DELETE order with valid ID = 10 + valid 16-digit API key | 204 No content', async ({
+  request,
+}) => {
   // prepare request body
   const requestBody = {
     status: 'OPEN',
@@ -357,7 +373,7 @@ test('DELETE order with valid ID = 10 + valid 16-digit API key | 204 No content'
     id: 10,
   }
   const requestHeaders = {
-    'api_key': '1234567891234567',
+    api_key: '1234567891234567',
   }
   // Send a DELETE request to the server
   const response = await request.delete('https://backend.tallinn-learning.ee/test-orders/10', {
@@ -370,7 +386,9 @@ test('DELETE order with valid ID = 10 + valid 16-digit API key | 204 No content'
   expect(response.status()).toBe(StatusCodes.NO_CONTENT)
 })
 
-test('DELETE order with valid ID = 5 + valid 16-digit API key | 204 No content', async ({ request }) => {
+test('DELETE order with valid ID = 5 + valid 16-digit API key | 204 No content', async ({
+  request,
+}) => {
   // prepare request body
   const requestBody = {
     status: 'OPEN',
@@ -381,7 +399,7 @@ test('DELETE order with valid ID = 5 + valid 16-digit API key | 204 No content',
     id: 5,
   }
   const requestHeaders = {
-    'api_key': '1234567891234567',
+    api_key: '1234567891234567',
   }
   // Send a DELETE request to the server
   const response = await request.delete('https://backend.tallinn-learning.ee/test-orders/5', {
@@ -394,7 +412,9 @@ test('DELETE order with valid ID = 5 + valid 16-digit API key | 204 No content',
   expect(response.status()).toBe(StatusCodes.NO_CONTENT)
 })
 
-test('DELETE order with valid ID + invalid API key < 16 digits | 401 Unauthorized', async ({ request }) => {
+test('DELETE order with valid ID + invalid API key < 16 digits | 401 Unauthorized', async ({
+  request,
+}) => {
   // prepare request body
   const requestBody = {
     status: 'OPEN',
@@ -405,7 +425,7 @@ test('DELETE order with valid ID + invalid API key < 16 digits | 401 Unauthorize
     id: 1,
   }
   const requestHeaders = {
-    'api_key': '123456789123456',
+    api_key: '123456789123456',
   }
   // Send a DELETE request to the server
   const response = await request.delete('https://backend.tallinn-learning.ee/test-orders/1', {
@@ -418,7 +438,9 @@ test('DELETE order with valid ID + invalid API key < 16 digits | 401 Unauthorize
   expect(response.status()).toBe(StatusCodes.UNAUTHORIZED)
 })
 
-test('DELETE order with valid ID + invalid API key > 16 digits | 401 Unauthorized', async ({ request }) => {
+test('DELETE order with valid ID + invalid API key > 16 digits | 401 Unauthorized', async ({
+  request,
+}) => {
   // prepare request body
   const requestBody = {
     status: 'OPEN',
@@ -429,7 +451,7 @@ test('DELETE order with valid ID + invalid API key > 16 digits | 401 Unauthorize
     id: 1,
   }
   const requestHeaders = {
-    'api_key': '12345678912345678',
+    api_key: '12345678912345678',
   }
   // Send a DELETE request to the server
   const response = await request.delete('https://backend.tallinn-learning.ee/test-orders/1', {
@@ -442,7 +464,9 @@ test('DELETE order with valid ID + invalid API key > 16 digits | 401 Unauthorize
   expect(response.status()).toBe(StatusCodes.UNAUTHORIZED)
 })
 
-test('DELETE order with valid ID + invalid API key with letters | 401 Unauthorized', async ({ request }) => {
+test('DELETE order with valid ID + invalid API key with letters | 401 Unauthorized', async ({
+  request,
+}) => {
   // prepare request body
   const requestBody = {
     status: 'OPEN',
@@ -453,7 +477,7 @@ test('DELETE order with valid ID + invalid API key with letters | 401 Unauthoriz
     id: 1,
   }
   const requestHeaders = {
-    'api_key': 'abcabcabcabcabca',
+    api_key: 'abcabcabcabcabca',
   }
   // Send a DELETE request to the server
   const response = await request.delete('https://backend.tallinn-learning.ee/test-orders/1', {
@@ -477,7 +501,7 @@ test(' DELETE order with valid ID + empty API key | 401 Unauthorized', async ({ 
     id: 1,
   }
   const requestHeaders = {
-    'api_key': '',
+    api_key: '',
   }
   // Send a DELETE request to the server
   const response = await request.delete('https://backend.tallinn-learning.ee/test-orders/1', {
@@ -490,7 +514,9 @@ test(' DELETE order with valid ID + empty API key | 401 Unauthorized', async ({ 
   expect(response.status()).toBe(StatusCodes.UNAUTHORIZED)
 })
 
-test(' DELETE order with non-existing ID = 0 + valid 16-digit API key | 400 Bad request', async ({ request }) => {
+test(' DELETE order with non-existing ID = 0 + valid 16-digit API key | 400 Bad request', async ({
+  request,
+}) => {
   // prepare request body
   const requestBody = {
     status: 'OPEN',
@@ -501,7 +527,7 @@ test(' DELETE order with non-existing ID = 0 + valid 16-digit API key | 400 Bad 
     id: 0,
   }
   const requestHeaders = {
-    'api_key': '1234567891234567',
+    api_key: '1234567891234567',
   }
   // Send a DELETE request to the server
   const response = await request.delete('https://backend.tallinn-learning.ee/test-orders/0', {
@@ -514,7 +540,9 @@ test(' DELETE order with non-existing ID = 0 + valid 16-digit API key | 400 Bad 
   expect(response.status()).toBe(StatusCodes.BAD_REQUEST)
 })
 
-test(' DELETE order with non-existing ID > 10 + valid 16-digit API key | 400 Bad request', async ({ request }) => {
+test(' DELETE order with non-existing ID > 10 + valid 16-digit API key | 400 Bad request', async ({
+  request,
+}) => {
   // prepare request body
   const requestBody = {
     status: 'OPEN',
@@ -525,7 +553,7 @@ test(' DELETE order with non-existing ID > 10 + valid 16-digit API key | 400 Bad
     id: 11,
   }
   const requestHeaders = {
-    'api_key': '1234567891234567',
+    api_key: '1234567891234567',
   }
   // Send a DELETE request to the server
   const response = await request.delete('https://backend.tallinn-learning.ee/test-orders/11', {
@@ -538,7 +566,9 @@ test(' DELETE order with non-existing ID > 10 + valid 16-digit API key | 400 Bad
   expect(response.status()).toBe(StatusCodes.BAD_REQUEST)
 })
 
-test(' DELETE order with empty ID  + valid 16-digit API key | 400 Bad request', async ({ request }) => {
+test(' DELETE order with empty ID  + valid 16-digit API key | 400 Bad request', async ({
+  request,
+}) => {
   // prepare request body
   const requestBody = {
     status: 'OPEN',
@@ -549,7 +579,7 @@ test(' DELETE order with empty ID  + valid 16-digit API key | 400 Bad request', 
     id: '',
   }
   const requestHeaders = {
-    'api_key': '1234567891234567',
+    api_key: '1234567891234567',
   }
   // Send a DELETE request to the server
   const response = await request.delete('https://backend.tallinn-learning.ee/test-orders/11', {
@@ -561,12 +591,6 @@ test(' DELETE order with empty ID  + valid 16-digit API key | 400 Bad request', 
   console.log('response body:', await response.text())
   expect(response.status()).toBe(StatusCodes.BAD_REQUEST)
 })
-
-
-
-
-
-
 
 test('post order with correct data should receive code 201', async ({ request }) => {
   // prepare request body
