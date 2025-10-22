@@ -30,3 +30,4 @@
 | DELETE order with empty ID  + valid 16-digit API key | 400 Bad request |
 | GET login with correct login and password | 200 OK |
 | GET login with missing login and password | 500 Internal Server Error |
+| GET login with missing password | 500 Internal Server Error |
