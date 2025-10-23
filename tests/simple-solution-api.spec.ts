@@ -592,6 +592,40 @@ test(' DELETE order with empty ID  + valid 16-digit API key | 400 Bad request', 
   expect(response.status()).toBe(StatusCodes.BAD_REQUEST)
 })
 
+test('GET login with correct login and password | 200 OK', async ({ request }) => {
+  const response = await request.get('https://backend.tallinn-learning.ee/test-orders', {
+    params: {
+      username: 'Jane',
+      password: 'Qwerty',
+    },
+  })
+  console.log('response status:', response.status())
+  console.log('response body:', await response.json())
+  expect(response.status()).toBe(StatusCodes.OK)
+})
+
+test('GET login with missing login | 500 Internal Server Error', async ({ request }) => {
+  const response = await request.get('https://backend.tallinn-learning.ee/test-orders', {
+    params: {
+      password: 'Qwert',
+    },
+  })
+  console.log('response status:', response.status())
+  console.log('response body:', await response.json())
+  expect(response.status()).toBe(StatusCodes.INTERNAL_SERVER_ERROR)
+})
+
+test('GET login with missing password | 500 Internal Server Error', async ({ request }) => {
+  const response = await request.get('https://backend.tallinn-learning.ee/test-orders', {
+    params: {
+      username: 'Jane',
+    },
+  })
+  console.log('response status:', response.status())
+  console.log('response body:', await response.json())
+  expect(response.status()).toBe(StatusCodes.INTERNAL_SERVER_ERROR)
+})
+
 test('post order with correct data should receive code 201', async ({ request }) => {
   // prepare request body
   const requestBody = {
