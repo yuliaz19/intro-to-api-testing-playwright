@@ -4,7 +4,9 @@ import { StatusCodes } from 'http-status-codes'
 
 const url = 'https://backend.tallinn-learning.ee/api/loan-calc/decision'
 
-test('min meanings for income, debt, age and loanperiod should get 200 OK with High risk and positive decision', async ({ request }) => {
+test('min meanings for income, debt, age and loanperiod should get 200 OK with High risk and positive decision', async ({
+  request,
+}) => {
   // prepare request body
   const requestBody = new LoanDecisionDto(1, 0, 17, true, 1, 3)
   // send POST request to the server
@@ -24,7 +26,9 @@ test('min meanings for income, debt, age and loanperiod should get 200 OK with H
   expect.soft(responseBody.riskDecision).toBe('positive')
 })
 
-test('some valid meanings for income, debt, age and loanperiod should get 200 OK with Medium risk and positive decision', async ({ request }) => {
+test('some valid meanings for income, debt, age and loanperiod should get 200 OK with Medium risk and positive decision', async ({
+  request,
+}) => {
   // prepare request body
   const requestBody = new LoanDecisionDto(2, 1, 30, true, 1, 6)
   // send POST request to the server
@@ -44,7 +48,9 @@ test('some valid meanings for income, debt, age and loanperiod should get 200 OK
   expect.soft(responseBody.riskDecision).toBe('positive')
 })
 
-test('some valid meanings for income, debt, age and loanperiod should get 200 OK with Low risk and positive decision', async ({ request }) => {
+test('some valid meanings for income, debt, age and loanperiod should get 200 OK with Low risk and positive decision', async ({
+  request,
+}) => {
   // prepare request body
   const requestBody = new LoanDecisionDto(1000, 100, 40, true, 500, 12)
   // send POST request to the server
@@ -64,7 +70,9 @@ test('some valid meanings for income, debt, age and loanperiod should get 200 OK
   expect.soft(responseBody.riskDecision).toBe('positive')
 })
 
-test('some valid meanings for income, debt, age and loanperiod + unemployed should get 200 OK with Medium risk and positive decision', async ({ request }) => {
+test('some valid meanings for income, debt, age and loanperiod + unemployed should get 200 OK with Medium risk and positive decision', async ({
+  request,
+}) => {
   // prepare request body
   const requestBody = new LoanDecisionDto(1000, 100, 40, false, 500, 9)
   // send POST request to the server
@@ -84,7 +92,9 @@ test('some valid meanings for income, debt, age and loanperiod + unemployed shou
   expect.soft(responseBody.riskDecision).toBe('positive')
 })
 
-test('some valid meanings for income, debt, age and loanperiod should get 200 OK with negative decision', async ({ request }) => {
+test('some valid meanings for income, debt, age and loanperiod should get 200 OK with negative decision', async ({
+  request,
+}) => {
   // prepare request body
   const requestBody = new LoanDecisionDto(10, 100, 25, true, 10000, 18)
   // send POST request to the server
