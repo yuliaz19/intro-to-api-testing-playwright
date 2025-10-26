@@ -53,7 +53,9 @@ test('PUT order with valid ID = 5 + valid 16-digit API key | 200 OK', async ({ r
   expect(response.status()).toBe(StatusCodes.OK)
 })
 
-test('PUT order with valid ID + invalid API key < 16 digits | 401 Unauthorized', async ({ request}) => {
+test('PUT order with valid ID + invalid API key < 16 digits | 401 Unauthorized', async ({
+  request,
+}) => {
   // prepare request body
   const requestBody = OrderDto.createOrderWithLowPriority()
   const requestHeaders = {
