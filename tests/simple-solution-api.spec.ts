@@ -665,3 +665,23 @@ test('post order with incorrect data should receive code 400', async ({ request 
   console.log('response body:', await response.text())
   expect(response.status()).toBe(StatusCodes.BAD_REQUEST)
 })
+
+//// checking other people case
+test('PUT - Update order with invalid API key', async ({ request }) => {
+  const requestBody = {
+    status: 'PROCESSING',
+    courierId: 1,
+    customerName: 'Updated Customer',
+    customerPhone: '123456789',
+    comment: 'Updated comment',
+  }
+
+  const response = await request.put('https://backend.tallinn-learning.ee/test-orders/1', {
+    headers: { api_key: 'invalid-key' },
+    data: requestBody,
+  })
+
+  console.log('response status:', response.status())
+  console.log('response body:', await response.text())
+  expect(response.status()).toBe(StatusCodes.BAD_REQUEST)
+})
