@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 import { StatusCodes } from 'http-status-codes'
 import { LoginDto } from './dto/login-dto'
 
-test('should return token with correct username and password', async ( {request, }) => {
+test('should return token with correct username and password', async ({ request }) => {
   // prepare request body
   const requestBody = LoginDto.createLoginDto()
   // Send a PUT request to the server
@@ -14,7 +14,7 @@ test('should return token with correct username and password', async ( {request,
   expect(response.status()).toBe(StatusCodes.OK)
 })
 
-test('should not return token with incorrect username and password', async ( {request, }) => {
+test('should not return token with incorrect username and password', async ({ request }) => {
   // prepare request body
   const requestBody = new LoginDto('zimovnova', '')
   // Send a PUT request to the server
